@@ -1,0 +1,5 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="AoC23: Day 2" type="DenoConfigurationType" inputPath="$PROJECT_DIR$/2023/day-2.ts" programParameters="run --allow-read">
+    <method v="2" />
+  </configuration>
+</component>
