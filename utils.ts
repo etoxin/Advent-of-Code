@@ -5,3 +5,7 @@ export function* chunks(arr, n) {
         yield arr.slice(i, i + n);
     }
 }
+
+export function isNumber(n) {
+    return !isNaN(parseFloat(n)) && !isNaN(n - 0);
+}
