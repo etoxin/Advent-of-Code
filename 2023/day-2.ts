@@ -9,11 +9,9 @@ const dice = new Set([
 
 const result = lines.filter(line => {
     let validGame = true;
-    const throws = line.split('; ');
-    throws.forEach(hand => {
+    line.split('; ').forEach(hand => {
         [...dice].forEach(([{rx, max}]) => {
-            const count = (hand.match(rx) ?? ['0']).reduce((acc, cur) => acc + Number(cur.split(' ')[0]), 0);
-            if (count > max) validGame = false;
+            if ((hand.match(rx) ?? ['0']).reduce((acc, cur) => acc + Number(cur.split(' ')[0]), 0) > max) validGame = false;
         });
     })
     return validGame;
