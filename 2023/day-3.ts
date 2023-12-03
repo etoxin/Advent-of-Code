@@ -1,9 +1,9 @@
 import {NUMBER_REGEX} from "../constants.ts";
 
-const _puzzleInput = await Deno.readTextFile("./2023/day-3-input.txt");
+const puzzleInput = await Deno.readTextFile("./2023/day-3-input.txt");
 
 
-const puzzleInput =
+const _puzzleInput =
     `467..114..
 ...*......
 ..35..633.
@@ -32,11 +32,14 @@ lines.forEach((line, rowNumber) => {
         const numberCharStart = line.indexOf(partNumber);
         const numberCharEnd = numberCharStart + partNumber.length;
 
+        const lineAbove = lines[rowNumber - 1];
+        const lineBelow = lines[rowNumber + 1];
+
         const surroundingCharacter = new Map([
-            ['stringAbove', rowNumber === 0 ? '' : lines[rowNumber - 1]?.slice(numberCharStart - 1, numberCharEnd + 1) ?? ''],
-            ['stringBelow', rowNumber === lines.length ? '' : lines[rowNumber + 1]?.slice(numberCharStart - 1, numberCharEnd + 1) ?? ''],
             ['characterBefore', line.charAt(numberCharStart - 1)],
             ['characterAfter', line.charAt(numberCharEnd)],
+            ['charactersAbove', lineAbove?.substring(numberCharStart - 1, numberCharEnd + 1)??''],
+            ['charactersBelow', lineBelow?.substring(numberCharStart - 1, numberCharEnd + 1)??'']
         ])
 
         const toTest = Array.from(surroundingCharacter.values()).join('');
@@ -50,6 +53,8 @@ lines.forEach((line, rowNumber) => {
         if (partNumber === "204") {
             console.log(line, partNumber, hasSymbol, surroundingCharacter);
         }
+
+        // console.log(line, partNumber, hasSymbol, surroundingCharacter);
     });
 });
 
