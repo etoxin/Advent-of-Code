@@ -50,7 +50,7 @@ lines.forEach((line, rowNumber) => {
             tally.push(partNumber);
         }
 
-        if (partNumber === "204") {
+        if (partNumber === "939") {
             console.log(line, partNumber, hasSymbol, surroundingCharacter);
         }
 
