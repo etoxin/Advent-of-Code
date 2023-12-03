@@ -1,9 +1,9 @@
 import {NUMBER_REGEX} from "../constants.ts";
 
-const puzzleInput = await Deno.readTextFile("./2023/day-3-input.txt");
+const _puzzleInput = await Deno.readTextFile("./2023/day-3-input.txt");
 
 
-const _puzzleInput =
+const puzzleInput =
     `467..114..
 ...*......
 ..35..633.
@@ -16,19 +16,14 @@ const _puzzleInput =
 .664.598..`
 
 const ___puzzleInput =
-`.......12.......935............184.720...243........589.652..........435..........483.............6...........................904...........
+    `.......12.......935............184.720...243........589.652..........435..........483.............6...........................904...........
 ......*.....968*.....$............*........=..348...*..........986....*...................459....*........422................#......%482....
 ....291............612....290..........903........699......218*.......376............890....*.838...81......*.....138.../194................
 ..............156......$..*...891.&731....%..89...................523..........699....+...227......*.......225....=...........388....*......
 ................*...189..591.*................*.......783.....107..-...54.287..$................533.../..............909........&.603.424...`
 
-const lines = puzzleInput.split('\n').map(line => `.${line}.`);
-lines.unshift('.'.repeat(lines[0].length));
-lines.push('.'.repeat(lines[0].length));
-
+const lines = puzzleInput.split('\n');
 const tally: string[] = [];
-
-
 
 
 lines.forEach((line, rowNumber) => {
@@ -38,8 +33,8 @@ lines.forEach((line, rowNumber) => {
         const numberCharEnd = numberCharStart + partNumber.length;
 
         const surroundingCharacter = new Map([
-            ['stringAbove', lines[rowNumber - 1]?.slice(numberCharStart - 1, numberCharEnd + 1) ?? ''],
-            ['stringBelow', lines[rowNumber + 1]?.slice(numberCharStart - 1, numberCharEnd + 1) ?? ''],
+            ['stringAbove', rowNumber === 0 ? '' : lines[rowNumber - 1]?.slice(numberCharStart - 1, numberCharEnd + 1) ?? ''],
+            ['stringBelow', rowNumber === lines.length ? '' : lines[rowNumber + 1]?.slice(numberCharStart - 1, numberCharEnd + 1) ?? ''],
             ['characterBefore', line.charAt(numberCharStart - 1)],
             ['characterAfter', line.charAt(numberCharEnd)],
         ])
