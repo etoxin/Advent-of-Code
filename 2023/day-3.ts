@@ -2,9 +2,8 @@ import {NUMBER_REGEX} from "../constants.ts";
 
 const puzzleInput = await Deno.readTextFile("./2023/day-3-input.txt");
 
-
 const _puzzleInput =
-`467..114..
+    `467..114..
 ...*......
 ..35..633.
 ......#...
@@ -15,22 +14,15 @@ const _puzzleInput =
 ...$.*....
 .664.598..`
 
-const ____puzzleInput =
-`
-...........
-####.......
-#100#...56$
-####.......
-...........
-`
+
 const lines = puzzleInput.split('\n');
 const tally: string[] = [];
 
-
 lines.forEach((line, rowNumber) => {
-    const partNumbers = (line.match(NUMBER_REGEX) ?? []).filter(m => m !== '');
-    partNumbers.forEach((partNumber) => {
-        const numberIndexStart = line.indexOf(partNumber);
+    const partNumbers = ([...line.matchAll(NUMBER_REGEX)]).filter(([partNumber]) => partNumber !== "");
+    partNumbers.forEach((pnRx) => {
+        const partNumber = pnRx[0];
+        const numberIndexStart = pnRx.index ?? 0;
         const numberPositionStart = numberIndexStart - 1;
         const numberIndexEnd = numberIndexStart + (partNumber.length - 1);
         const numberPostionEnd = numberIndexEnd + 1;
@@ -52,17 +44,9 @@ lines.forEach((line, rowNumber) => {
         if (hasSymbol) {
             tally.push(partNumber);
         }
-        console.log(line, partNumber, hasSymbol, surroundingCharacter);
-        if (partNumber === "643") {
-            // console.log(line, partNumber, hasSymbol, surroundingCharacter);
-        }
     });
 });
 
 const result = tally.reduce((acc, cur) => acc + Number(cur), 0);
 
 console.log(result);
-
-// 4361
-
-// Not 540092
