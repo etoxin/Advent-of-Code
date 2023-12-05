@@ -1,3 +1,5 @@
+import { sum } from "../utils.ts";
+
 const puzzleInput = `Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53
 Card 2: 13 32 20 16 61 | 61 30 68 82 17 32 24 19
 Card 3:  1 21 53 59 44 | 69 82 63 72 16 21 14  1
@@ -12,19 +14,21 @@ Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11`
 const toNumberArray = (stringOfNumbers: string): number[] => {
     return [...stringOfNumbers.matchAll(/[0-9]{1,2}/g)].map(match => Number(match[0]));
 }
-
-
 const gamesRaw = puzzleInput.split('\n');
-const games = gamesRaw.map(gameInput => {
+const result = gamesRaw.map(gameInput => {
     const gameNumber = /[0-9]{1,9}/.exec(gameInput);
     const numberResults  = gameInput.split('|');
+    const game = Number(`${gameNumber}`);
+    const winningNumbers= toNumberArray(numberResults[0].split(":")[1]);
+    const playersNumbers= toNumberArray(numberResults[1]);
 
-    return {
-        gameInput,
-        games: Number(`${gameNumber}`),
-        winningNumbers: toNumberArray(numberResults[0].split(":")[1]),
-        playersNumbers: toNumberArray(numberResults[1])
-    }
-});
+    const playersWinningNumbers = playersNumbers.filter(number => winningNumbers.includes(number));
+    const playersScore = playersWinningNumbers.reduce((accumulator, currentValue, currentIndex, array) => {
+        if (currentIndex === 0) return 1;
+        return accumulator * 2;
+    }, 0);
 
-console.log(games);
+    return playersScore;
+}).reduce(sum,0);
+
+console.log(result);
