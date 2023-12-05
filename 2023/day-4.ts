@@ -23,14 +23,8 @@ const result = gamesRaw.map(gameInput => {
     const game = Number(`${gameNumber}`);
     const winningNumbers= toNumberArray(numberResults[0].split(":")[1]);
     const playersNumbers= toNumberArray(numberResults[1]);
-
     const playersWinningNumbers = playersNumbers.filter(number => winningNumbers.includes(number));
-    const playersScore = playersWinningNumbers.reduce((accumulator, currentValue, currentIndex, array) => {
-        if (currentIndex === 0) return 1;
-        return accumulator * 2;
-    }, 0);
-
-    return playersScore;
+    return playersWinningNumbers.reduce((accumulator, currentValue, currentIndex, array) => currentIndex === 0 ?1:accumulator * 2, 0);
 }).reduce(sum,0);
 
 console.log(result);
