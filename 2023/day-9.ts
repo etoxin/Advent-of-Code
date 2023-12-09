@@ -4,9 +4,6 @@ const _puzzleInput = `0 3 6 9 12 15
 1 3 6 10 15 21
 10 13 16 21 30 45`;
 
-const ___puzzleInput =
-  `15 18 30 59 111 187 296 499 999 2292 5394 12159 25703 50949 95308 169511 288607 473142 750534 1156659 1737663`;
-
 const lines = puzzleInput.split("\n").map((l) =>
   l.split(" ").map((sn) => Number(sn))
 );
