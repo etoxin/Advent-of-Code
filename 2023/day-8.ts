@@ -1,18 +1,14 @@
-const puzzleInput = `RL
+const puzzleInput = `LLR
 
-AAA = (BBB, CCC)
-BBB = (DDD, EEE)
-CCC = (ZZZ, GGG)
-DDD = (DDD, DDD)
-EEE = (EEE, EEE)
-GGG = (GGG, GGG)
+AAA = (BBB, BBB)
+BBB = (AAA, ZZZ)
 ZZZ = (ZZZ, ZZZ)`
 
 const END_KEY = 'ZZZ';
 const directionsMap = new Map<string, { L: string, R: string }>()
 const lines: string[] = puzzleInput.split('\n');
 let directions = lines.shift()?.split('');
-directions ??= [];
+directions = Array(1000).fill(directions).flat()
 lines.shift()
 
 lines.forEach(ln => {
@@ -20,11 +16,16 @@ lines.forEach(ln => {
     directionsMap.set(key.at(0) ?? '', {"L": left.at(0) ?? '', "R": right.at(0) ?? ''})
 });
 
-directions.reduce((acc, cur, count) => {
+directions.reduce((acc, cur, count, arr ) => {
     const step = directionsMap.get(acc);
+
     const next = step[cur];
+
+    // console.log({next, cur, step});
+
     if (next === END_KEY) {
         console.log(count + 1);
+        arr.splice(1);
     }
     return next;
 }, 'AAA')
