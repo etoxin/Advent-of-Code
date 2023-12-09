@@ -2235,25 +2235,23 @@ const puzzleInput = `
 2383
 7726
 1760
-`
-
+`;
 
 const sum = (a, c) => a + c;
 
-let totals = []
-puzzleInput.split('\n').reduce(function (acc, cur) {
-    if (cur === "") {
-        totals.push(acc)
-        return 0
-    }
-    return acc + Number(cur)
-}, 0)
+let totals = [];
+puzzleInput.split("\n").reduce(function (acc, cur) {
+  if (cur === "") {
+    totals.push(acc);
+    return 0;
+  }
+  return acc + Number(cur);
+}, 0);
 const sol1 = Math.max(...totals);
-const sol2 = totals.sort((a, b) => b - a).slice(0, 3).reduce(sum)
+const sol2 = totals.sort((a, b) => b - a).slice(0, 3).reduce(sum);
 
 console.log(sol1);
-console.log(sol2)
-
+console.log(sol2);
 
 // winner 67450
 // 199357

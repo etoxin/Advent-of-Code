@@ -2497,45 +2497,41 @@ B X
 A Z
 C Z
 C Z
-A Z`
-
-
+A Z`;
 
 const M = {
-    A: 1,
-    B: 2,
-    C: 3,
-    X: 1,
-    Y: 2,
-    Z: 3
-}
+  A: 1,
+  B: 2,
+  C: 3,
+  X: 1,
+  Y: 2,
+  Z: 3,
+};
 
-const games = puzzleInput.split('\n')
-    .map(g => g.split(' ')).map(m => [M[m[0]], M[m[1]]]).map(([p1, p2]) => {
-            if (p1 === p2) return p2 + 3;
-            if ((p1 + 1) % 3 === p2 % 3) return p2 + 6
-            return p2
-        }
-    ).reduce((a, c) => a + c)
-
+const games = puzzleInput.split("\n")
+  .map((g) => g.split(" ")).map((m) => [M[m[0]], M[m[1]]]).map(([p1, p2]) => {
+    if (p1 === p2) return p2 + 3;
+    if ((p1 + 1) % 3 === p2 % 3) return p2 + 6;
+    return p2;
+  }).reduce((a, c) => a + c);
 
 console.log(games);
 
-console.log(games === 15)
-
+console.log(games === 15);
 
 const iHateJS = {
-    'A X': 3,
-    'A Y': 4,
-    'A Z': 8,
-    'B X': 1,
-    'B Y': 5,
-    'B Z': 9,
-    'C X': 2,
-    'C Y': 6,
-    'C Z': 7,
+  "A X": 3,
+  "A Y": 4,
+  "A Z": 8,
+  "B X": 1,
+  "B Y": 5,
+  "B Z": 9,
+  "C X": 2,
+  "C Y": 6,
+  "C Z": 7,
 };
-const result = puzzleInput.split('\n').map(t => iHateJS[t]).reduce((a, c) => a + c)
+const result = puzzleInput.split("\n").map((t) => iHateJS[t]).reduce((a, c) =>
+  a + c
+);
 
 console.log(result);
-
