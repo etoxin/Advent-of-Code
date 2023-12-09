@@ -1,4 +1,6 @@
-const puzzleInput = `0 3 6 9 12 15
+const puzzleInput = await Deno.readTextFile("./2023/day-9-input.txt");
+
+const _puzzleInput = `0 3 6 9 12 15
 1 3 6 10 15 21
 10 13 16 21 30 45`;
 
