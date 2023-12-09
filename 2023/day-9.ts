@@ -11,44 +11,20 @@ const lines = puzzleInput.split("\n").map((l) =>
   l.split(" ").map((sn) => Number(sn))
 );
 
-const diff = (a: number, b: number) => Math.abs(a - b);
 const isZero = (i: number) => i === 0;
 
-function findDifferenceSequence(sequence) {
-    let differences = [];
-    for(let i = 0; i < sequence.length - 1; i++) {
-        differences.push(sequence[i + 1] - sequence[i]);
+const createDiff = (seq: number[]): number[] => {
+    let diff = [];
+    for (let i = 0; i < seq.length - 1; i++) {
+        diff.push(seq[i + 1] - seq[i])
     }
-    return differences;
-}
-
-function isRootSequence(sequence: number[]) {
-    let isRoot = true;
-    for(let i = 0; i < sequence.length; i++) {
-        if (sequence[i] != 0) {
-            isRoot = false;
-            break;
-        }
-    }
-    return isRoot;
-}
-
-const createDiff = (l: number[]): number[] => {
-  // if (l.length === 1) return l;
-
-  const diffArr = l.map((value, index, array) => {
-    if (index + 1 <= array.length) {
-      return diff(value, array[index + 1]);
-    }
-  });
-  diffArr.pop();
-  return diffArr;
+    return diff
 };
 
 const result = lines.map((l) => {
   const tree = [l];
-  while (!isRootSequence(tree.at(-1))) {
-    tree.push(findDifferenceSequence(tree.at(-1)));
+  while (!tree.at(-1).every(isZero)) {
+    tree.push(createDiff(tree.at(-1)));
   }
   return tree.map((l) => l.at(-1)).reverse().reduce((acc, cur) => {
     return acc + cur;
