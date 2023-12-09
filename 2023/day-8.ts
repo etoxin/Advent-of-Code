@@ -1,6 +1,4 @@
 const puzzleInput = await Deno.readTextFile("./2023/day-8-input.txt");
-
-
 const _puzzleInput = `LLR
 
 AAA = (BBB, BBB)
@@ -21,11 +19,7 @@ lines.forEach(ln => {
 
 directions.reduce((acc, cur, count, arr ) => {
     const step = directionsMap.get(acc);
-
     const next = step[cur];
-
-    // console.log({next, cur, step});
-
     if (next === END_KEY) {
         console.log(count + 1);
         arr.splice(1);
