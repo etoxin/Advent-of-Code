@@ -1,4 +1,7 @@
-const puzzleInput = `LLR
+const puzzleInput = await Deno.readTextFile("./2023/day-8-input.txt");
+
+
+const _puzzleInput = `LLR
 
 AAA = (BBB, BBB)
 BBB = (AAA, ZZZ)
