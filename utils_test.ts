@@ -22,3 +22,15 @@ Deno.test("InputProcessor: getEntry",() => {
     const result = setup.getEntry(2,2)
     assertEquals(result, "d");
 })
+
+Deno.test("InputProcessor: getEntryWithNeighbors",() => {
+    const setup = new InputProcessor(testInput);
+    const result = setup.getEntryWithNeighbors(2,2)
+    assertEquals(result, {
+        entry: "d",
+        above: "e",
+        below: 'c',
+        before: 's',
+        after: 'f'
+    });
+})

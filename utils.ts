@@ -25,9 +25,19 @@ export class InputProcessor {
     return this.#matrix;
   }
 
-  getEntry(row: number, col: number) {
+  getEntry(row: number, col: number): null | string {
     const rowArr = this.#matrix.at(row);
     if(!rowArr) return null;
     return rowArr.at(col) ?? null;
+  }
+
+  getEntryWithNeighbors(row: number, col: number) {
+    return {
+      entry: this.getEntry(row, col),
+      above: this.getEntry(row - 1, col),
+      below: this.getEntry(row + 1, col),
+      before: this.getEntry(row, col - 1),
+      after: this.getEntry(row, col + 1),
+    }
   }
 }
