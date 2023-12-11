@@ -36,11 +36,11 @@ export class InputProcessor {
 
   getEntryWithNeighbors(row: number, col: number) {
     return {
-      entry: [this.getEntry(row, col), row, col],
-      above: [this.getEntry(row - 1, col), row - 1, col],
-      below: [this.getEntry(row + 1, col), row + 1, col],
-      before: [this.getEntry(row, col - 1), row, col - 1],
-      after: [this.getEntry(row, col + 1), row, col + 1],
+      entry: [this.getEntry(row, col), [row, col]],
+      above: [this.getEntry(row - 1, col), [row - 1, col]],
+      below: [this.getEntry(row + 1, col), [row + 1, col]],
+      before: [this.getEntry(row, col - 1), [row, col - 1]],
+      after: [this.getEntry(row, col + 1), [row, col + 1]],
     };
   }
 }

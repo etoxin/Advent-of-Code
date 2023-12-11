@@ -27,11 +27,11 @@ Deno.test("InputProcessor: getEntryWithNeighbors", () => {
   const setup = new InputProcessor(testInput);
   const result = setup.getEntryWithNeighbors(2, 2);
   assertEquals(result, {
-    entry: ["d", 2, 2],
-    above: ["e", 1, 2],
-    below: ["c", 3, 2],
-    before: ["s", 2, 1],
-    after: ["f", 2, 3],
+    entry: ["d", [2, 2]],
+    above: ["e", [1, 2]],
+    below: ["c", [3, 2]],
+    before: ["s", [2, 1]],
+    after: ["f", [2, 3]],
   });
 });
 
@@ -39,11 +39,11 @@ Deno.test("InputProcessor: getEntryWithNeighbors Edge", () => {
   const setup = new InputProcessor(testInput);
   const result = setup.getEntryWithNeighbors(0, 0);
   assertEquals(result, {
-    entry: ["1", 0, 0],
-    above: [null, -1, 0],
-    below: ["q", 1, 0],
-    before: [null, 0, -1],
-    after: ["2", 0, 1],
+    entry: ["1", [0, 0]],
+    above: [null, [-1, 0]],
+    below: ["q", [1, 0]],
+    before: [null, [0, -1]],
+    after: ["2", [0, 1]],
   });
 });
 
