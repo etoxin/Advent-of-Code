@@ -11,11 +11,11 @@ const lines = puzzleInput.split("\n").map((l) =>
 const isZero = (i: number) => i === 0;
 
 const createDiff = (seq: number[]): number[] => {
-    let diff = [];
-    for (let i = 0; i < seq.length - 1; i++) {
-        diff.push(seq[i + 1] - seq[i])
-    }
-    return diff
+  let diff = [];
+  for (let i = 0; i < seq.length - 1; i++) {
+    diff.push(seq[i + 1] - seq[i]);
+  }
+  return diff;
 };
 
 const result = lines.map((l) => {
@@ -27,7 +27,6 @@ const result = lines.map((l) => {
     return acc + cur;
   }, 0);
 }).reduce((acc, cur) => acc + cur);
-
 
 // 1939607039
 console.log(result);
