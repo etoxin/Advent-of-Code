@@ -25,10 +25,16 @@ export class InputProcessor {
     return this.#matrix;
   }
 
-  getEntry(row: number, col: number): null | string {
+  getEntryAt(row: number, col: number): null | string {
     const rowArr = this.#matrix.at(row);
     if(!rowArr) return null;
     return rowArr.at(col) ?? null;
+  }
+
+  getEntry(row: number, col: number): null | string {
+    const rowArr = this.#matrix[row];
+    if(!rowArr) return null;
+    return rowArr[col] ?? null;
   }
 
   getEntryWithNeighbors(row: number, col: number) {

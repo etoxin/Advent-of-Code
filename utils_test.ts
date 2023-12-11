@@ -34,3 +34,21 @@ Deno.test("InputProcessor: getEntryWithNeighbors",() => {
         after: 'f'
     });
 })
+
+Deno.test("InputProcessor: getEntryWithNeighbors Edge",() => {
+    const setup = new InputProcessor(testInput);
+    const result = setup.getEntryWithNeighbors(0,0)
+    assertEquals(result, {
+        entry: "1",
+        above: null,
+        below: 'q',
+        before: null,
+        after: '2'
+    });
+})
+
+Deno.test("InputProcessor: getEntryAt",() => {
+    const setup = new InputProcessor(testInput);
+    const result = setup.getEntryAt(-2,-2)
+    assertEquals(result, 'v');
+})
