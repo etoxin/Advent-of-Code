@@ -3,20 +3,17 @@ const lines = puzzleInput.split("\n");
 lines.pop();
 
 const parsed = lines.map((l) => l.split("   "));
-const col_A = parsed.map(([a, b]) => a).sort();
-const col_B = parsed.map(([a, b]) => b).sort();
+const col_A = parsed.map(([a, ]) => a).sort();
+const col_B = parsed.map(([, b]) => b).sort();
 
 const sorted = [];
 
 for (let i = 0; i < col_B.length; i++) {
-    const colBElement = col_B[i];
-    const colAElement = col_A[i];
-    sorted.push([colAElement, colBElement]);
+    sorted.push([col_B[i], col_A[i]]);
 }
 
 const result = sorted.reduce((acc, [a, b]) => {
-    const dist = Math.abs(Number(a) - Number(b));
-    return acc + dist;
+    return acc + Math.abs(Number(a) - Number(b));
 }, 0);
 
 console.log(result);
