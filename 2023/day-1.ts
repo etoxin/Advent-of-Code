@@ -1,4 +1,5 @@
-import { isNumber, sum } from "../utils.ts";
+import { isNumber } from "https://deno.land/x/is_number/mod.ts";
+import { sum } from "../utils.ts";
 
 const puzzleInput = await Deno.readTextFile("./2023/day-1-input.txt");
 const lines = puzzleInput.split("\n");
