@@ -15,3 +15,8 @@ https://adventofcode.com/2024
 
 https://adventofcode.com/2022
 
+### Run Days
+
+```
+deno run -A ./2024/day-1.ts
+```
